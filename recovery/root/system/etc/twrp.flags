@@ -1,0 +1,40 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+#<src>                                                  <mnt_point>           <type>   <mnt_flags and options>   <fs_mgr_flags>
+
+# Logical partitions
+system                /system                 auto                        display="System";logical
+system_ext            /system_ext             auto                        flags=display="System_Ext";logical
+vendor                /vendor                 auto                        display="Vendor";logical
+product               /product                auto                        display="Product";logical
+odm                   /odm                    auto                        display="ODM";logical
+
+# Common partition
+/boot                emmc     /dev/block/by-name/boot                             flags=display="Boot"
+/recovery            emmc     /dev/block/by-name/recovery                         flags=display="Recovery"
+/dtbo                emmc     /dev/block/by-name/dtbo                             flags=display="Dtbo"
+/cache               ext4     /dev/block/by-name/cache                            flags=display="Cache"
+/metadata            ext4     /dev/block/by-name/metadata                         flags=display="Metadata"
+
+# Standard MediaTek's Partitions
+/vendor_dlkm         ext4     /dev/block/by-name/vendor_dlkm                      flags=display=vendor_dlkm
+/odm_dlkm            ext4     /dev/block/by-name/odm_dlkm                         flags=display=odm_dlkm
+/cust                ext4     /dev/block/by-name/cust                             flags=display=cust
+/custom              ext4     /dev/block/by-name/custom                           flags=display=custom
+/radical_update      ext4     /dev/block/by-name/radical_update                   flags=display=radical_update
+/misc                emmc     /dev/block/by-name/misc                             flags=display=misc
+/uboot               emmc     /dev/block/by-name/uboot                            flags=display=uboot
+/charge              emmc     /dev/block/by-name/charge                           flags=display=charge
+/resource            emmc     /dev/block/by-name/resource                         flags=display=resource
+/parameter           emmc     /dev/block/by-name/parameter                        flags=display=parameter
+/backup              emmc     /dev/block/by-name/backup                           flags=display=backup
+/frp                 emmc     /dev/block/by-name/frp                              flags=display=frp
+/trust               emmc     /dev/block/by-name/trust                            flags=display=trust
+/baseparamer         emmc     /dev/block/by-name/baseparamer                      flags=display=baseparamer
+/vbmeta              emmc     /dev/block/by-name/vbmeta                           flags=display=vbmeta
+/vendor_boot         emmc     /dev/block/by-name/vendor_boot                      flags=display=vendor_boot
+
+# Removable storage
+/usb_otg          vfat    /dev/block/sdd1  /dev/block/sdd            flags=display="USB-Storage";storage;wipeingui;removable;fsflags="utf8"
+/external_sd      vfat    /dev/block/mmcblk0p1  /dev/block/mmcblk0   flags=display="MicroSD";storage;wipeingui;removable;fsflags="utf8"
